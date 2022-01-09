@@ -1,13 +1,11 @@
 package com.uwindsor.clinic.models.map;
 
+import com.uwindsor.clinic.models.BaseEntity;
 import com.uwindsor.clinic.services.CrudService;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-public abstract class AbstractMapService <T, ID> implements CrudService<T, ID> {
+public abstract class AbstractMapService <T extends BaseEntity, ID extends  Long> implements CrudService<T, ID> {
     protected Map<ID,T> map = new HashMap<>();
 
 
@@ -23,8 +21,16 @@ public abstract class AbstractMapService <T, ID> implements CrudService<T, ID> {
     }
 
 
-    public T save(ID id, T object){
-        map.put(id,object);
+    public T save( T object){
+        if(object != null){
+            if(object.getId() == null) {
+                object.setId(getNextId());
+            }
+            map.put((ID) object.getId(),object);
+        }else {
+            throw new RuntimeException("object cannot be null");
+        }
+
         return object;
     }
 @Override
@@ -37,6 +43,18 @@ public abstract class AbstractMapService <T, ID> implements CrudService<T, ID> {
         map.entrySet().removeIf(idtEntry -> idtEntry.getValue().equals(object) );
     }
 
+    private Long getNextId(){
+
+        Long nextId = null;
+        try {
+            nextId = Collections.max(map.keySet()).longValue() + 1;
+
+        }catch (NoSuchElementException e){
+            nextId = 1000L;
+        }
+
+        return nextId;
+    }
 
 
 
