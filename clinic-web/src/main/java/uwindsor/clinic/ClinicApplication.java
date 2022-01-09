@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan({"com.uwindsor.clinic"})
+@ComponentScan({"com.uwindsor.clinic","uwindsor.clinic.controllers","uwindsor.clinic.startup","com.uwindsor.clinic.models.map"})
 @SpringBootApplication
 public class ClinicApplication {
 
