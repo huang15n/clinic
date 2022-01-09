@@ -1,6 +1,6 @@
 package com.uwindsor.clinic.models;
 
-public class Person {
+public class Person extends BaseEntity{
     private Long id;
     private String firstName;
     private String lastName;

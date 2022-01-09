@@ -8,9 +8,7 @@ public interface CrudService <T, ID>{
     Set<T> findAll();
     T findById(ID id);
 
-    default T save(T object) {
-        return null;
-    }
+     T save(T object);
 
     void delete(T object);
     void deleteById(ID id);
