@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
+<head th:replace="fragments/header :: header">
+
 </head>
 <body>
-<h1 th:text="'main controller'"> welcome to spring </h1>
+<!--<div th:replace="fragments::navigation">-->
+
+
+</div>
+
+<div th:replace="fragments/header :: navbar">
+
+</div>
+
+
+
 </body>
 </html>
