@@ -18,4 +18,16 @@ public class Pet extends BaseEntity{
     public Owner getOwners() {
         return owners;
     }
+
+    public void setOwners(Owner owners) {
+        this.owners = owners;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
 }

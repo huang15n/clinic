@@ -6,18 +6,22 @@
 <body>
 <div th:replace="fragments/header :: navbar"> </div>
 <h1 th:text="'this is owner list'"> welcome to spring </h1>
-<table>
+<table class = "table">
+    <thead class = "thead-dark'">
     <tr>
         <th>ID</th>
         <th>First Name</th>
         <th>Last Name</th>
     </tr>
+    </thead>>
+    <tbody>
     <tr th:each="owner:${owners}">
         <td th:text="${owner?.id}">1</td>
         <td th:text="${owner?.firstName}">1</td>
         <td th:text="${owner?.lastName}">1</td>
 
     </tr>
+    </tbody>
 </table>
 
 </body>
