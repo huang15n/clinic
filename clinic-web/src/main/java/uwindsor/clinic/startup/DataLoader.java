@@ -1,10 +1,11 @@
 package uwindsor.clinic.startup;
 
 import com.uwindsor.clinic.models.Owner;
+import com.uwindsor.clinic.models.Pet;
+import com.uwindsor.clinic.models.PetType;
 import com.uwindsor.clinic.models.Vet;
-import com.uwindsor.clinic.models.map.OwnerServiceMap;
-import com.uwindsor.clinic.models.map.VetServiceMap;
 import com.uwindsor.clinic.services.OwnerService;
+import com.uwindsor.clinic.services.PetTypeService;
 import com.uwindsor.clinic.services.VetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,11 +18,13 @@ public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
     @Autowired
-    public DataLoader(OwnerService ownerService, VetService vetService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
     /*  public DataLoader(){
@@ -41,6 +44,16 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        PetType dog = new PetType();
+        dog.setName("dog");
+        PetType savedDog = (PetType) petTypeService.save(dog); // I can reuse this data
+        PetType cat = new PetType();
+        cat.setName("cat");
+        PetType savedCat = (PetType) petTypeService.save(cat);
+
+
+
         Owner o1 = new Owner();
         o1.setFirstName("James");
         o1.setLastName("Dickson");
