@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.util.HashSet;
+
 
 @Component
 // make this as the spring bean and this will execute
@@ -27,19 +30,6 @@ public class DataLoader implements CommandLineRunner {
         this.petTypeService = petTypeService;
     }
 
-    /*  public DataLoader(){
-       // ownerService = new OwnerServiceMap();
-       // vetService = new VetServiceMap();
-
-
-
-
-
-
-
-    }
-
-    */
 
 
     @Override
@@ -57,6 +47,18 @@ public class DataLoader implements CommandLineRunner {
         Owner o1 = new Owner();
         o1.setFirstName("James");
         o1.setLastName("Dickson");
+        o1.setAddress("111 Bickering street");
+        o1.setCity("New York");
+        o1.setTelephone("12312313");
+
+        Pet jamesPet = new Pet();
+        jamesPet.setPetType(savedDog);
+        jamesPet.setOwners(o1);
+        jamesPet.setBirthDate(LocalDate.now());
+        jamesPet.setName("Doug");
+        o1.getPets().add(jamesPet);
+
+
 
 
         ownerService.save(o1);
@@ -66,6 +68,18 @@ public class DataLoader implements CommandLineRunner {
 
         o2.setFirstName("Camelon");
         o2.setLastName("Pierce");
+        o2.setAddress("111 mahamthm street");
+        o2.setCity("Las Vegas");
+        o2.setTelephone("323232");
+
+
+        Pet camelonPet = new Pet();
+        camelonPet.setPetType(savedCat);
+        camelonPet.setOwners(o1);
+        camelonPet.setBirthDate(LocalDate.now());
+        camelonPet.setName("Fox");
+        o2.getPets().add(camelonPet);
+
 
         ownerService.save(o2);
 
